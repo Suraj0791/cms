@@ -13,7 +13,7 @@ app.get("/", (_, res) => {
 const start = async () => {
   // Initialize Payload
   await payload.init({
-    secret: process.env.PAYLOAD_SECRET || "your-secret-here",
+    secret: process.env.PAYLOAD_SECRET || SURAJ,
     express: app,
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)

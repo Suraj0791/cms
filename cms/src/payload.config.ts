@@ -33,6 +33,5 @@ export default buildConfig({
   plugins: [],
   db: mongooseAdapter({
     url: process.env.DATABASE_URI!,
-  }),
-  secret: process.env.PAYLOAD_SECRET!,
+  })
 })

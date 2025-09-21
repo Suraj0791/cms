@@ -1,14 +1,25 @@
 FROM node:18-alpine
 
+# Install dependencies needed for Sharp
+RUN apk add --no-cache \
+    libc6-compat \
+    vips-dev
+
 WORKDIR /app
 
+# Copy package files
 COPY package*.json ./
-RUN npm install
+COPY yarn.lock* ./
 
+# Install dependencies with specific Sharp configuration
+RUN yarn install --frozen-lockfile
+
+# Copy source code
 COPY . .
 
-RUN npm run build
+# Build the application
+RUN yarn build
 
 EXPOSE 3001
 
-CMD ["npm", "run", "serve"]
+CMD ["yarn", "serve"]
